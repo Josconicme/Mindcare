@@ -1,0 +1,111 @@
+/* General styles for the admin dashboard */
+.admin-dashboard {
+    display: flex;
+    min-height: 100vh;
+}
+
+/* Header styles */
+.admin-header {
+    background-color: #f0f0f0;
+    padding: 1rem;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 100;
+    text-align: center;
+}
+
+/* Sidebar styles */
+.admin-sidebar {
+    width: 250px;
+    background-color: #333;
+    color: #fff;
+    padding: 1rem;
+    position: fixed;
+    top: 53px;
+    left: 0;
+    height: 100vh;
+
+}
+
+.admin-sidebar ul {
+    list-style: none;
+    padding: 0;
+}
+
+.admin-sidebar li {
+    margin-bottom: 1rem;
+}
+
+.admin-sidebar a {
+    color: #fff;
+    text-decoration: none;
+    display: block;
+    padding: 0.5rem;
+}
+
+.admin-sidebar a:hover,
+.admin-sidebar .active a {
+    background-color: #555;
+    border-radius: 5px;
+}
+
+
+.admin-sidebar button {
+    background-color: #555;
+    color: white;
+    padding: 0.5rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/* Main content styles */
+.admin-content {
+    flex-grow: 1;
+    padding: 2rem;
+    margin-left: 250px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 2rem;
+    margin-top: 53px;
+}
+
+@media (max-width: 768px) {
+    .admin-content {
+        grid-template-columns: 1fr; /* Change to one column on smaller screens */
+    }
+
+    .admin-sidebar {
+        width: 100%;
+    }
+}
+
+/* Widget card styles */
+.widgets {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.widget-card {
+    background-color: #f8f8f8;
+    border-radius: 5px;
+    padding: 1rem;
+    flex: 1;
+    min-width: 150px;
+}
+
+/* Chart container styles */
+.chart-container {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Recent list styles */
+.recent-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+/* src/components/AdminDashboard.css */
