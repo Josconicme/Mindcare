@@ -4,6 +4,7 @@ const api = axios.create({
     baseURL: 'http://localhost:8000/api/v1',
     headers: {
         'Content-Type': 'application/json'
+
     },
     withCredentials: true
 });
@@ -34,4 +35,24 @@ api.interceptors.response.use(
     }
 );
 
-export default api; 
+export const getProblems = async () => {
+  const response = await api.get("/api/problem");
+  return response.data;
+};
+
+export const getRecoveries = async () => {
+  const response = await api.get("/api/recovery");
+  return response.data;
+};
+
+export const getTasks = async () => {
+  const response = await api.get("/api/task");
+  return response.data;
+};
+
+export const getUsers = async () => {
+  const response = await api.get("/api/user");
+  return response.data;
+};
+
+export default api;
