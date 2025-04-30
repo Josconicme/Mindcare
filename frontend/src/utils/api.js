@@ -56,3 +56,50 @@ export const getUsers = async () => {
 };
 
 export default api;
+// At the end of your app.js file, replace your current server listening code with this:
+
+// Find an available port
+const findAvailablePort = (startPort) => {
+  return new Promise((resolve, reject) => {
+    const server = require('http').createServer();
+    
+    server.on('error', (err) => {
+      if (err.code === 'EADDRINUSE') {
+        // Port is in use, try the next one
+        resolve(findAvailablePort(startPort + 1));
+      } else {
+        reject(err);
+      }
+    });
+    
+    server.on('listening', () => {
+      // Found an available port
+      const port = server.address().port;
+      server.close(() => {
+        resolve(port);
+      });
+    });
+    
+    server.listen(startPort);
+  });
+};
+
+// Start the server on an available port
+const startServer = async () => {
+  try {
+    const desiredPort = process.env.PORT || 5000;
+    const availablePort = await findAvailablePort(desiredPort);
+    
+    app.listen(availablePort, () => {
+      if (availablePort !== desiredPort) {
+        console.log(`Note: Port ${desiredPort} was in use. Using port ${availablePort} instead.`);
+      }
+      console.log(`Server running on port ${availablePort}`);
+    });
+  } catch (err) {
+    console.error('Failed to start server:', err);
+    process.exit(1);
+  }
+};
+
+startServer();
